@@ -22,7 +22,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - run: rustup update
@@ -33,14 +33,14 @@ jobs:
   fmt:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - run: rustup update
     - run: cargo fmt --all --check
 
   readme:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: stellar/actions/rust-cache@main
     - run: rustup install nightly
     - run: make readme
@@ -65,7 +65,7 @@ jobs:
         #   target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.sys.os }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: stellar/actions/rust-cache@main
     - name: Use the minimum supported Rust version
       if: matrix.rust == 'msrv'
@@ -81,7 +81,7 @@ jobs:
     - run: rustup update
     - run: rustup target add ${{ matrix.sys.target }}
     - run: cargo version
-    - uses: stellar/binaries@v12
+    - uses: stellar/binaries@v26
       with:
         name: cargo-hack
         version: 0.5.16
@@ -102,7 +102,7 @@ jobs:
         #   target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.sys.os }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: stellar/actions/rust-cache@main
     - name: Use the minimum supported Rust version
       if: matrix.rust == 'msrv'
@@ -117,7 +117,7 @@ jobs:
     - run: rustup update
     - run: rustup target add ${{ matrix.sys.target }}
     - run: cargo version
-    - uses: stellar/binaries@v12
+    - uses: stellar/binaries@v26
       with:
         name: cargo-hack
         version: 0.5.16
