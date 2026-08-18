@@ -394,9 +394,22 @@ impl core::fmt::Display for AssetCode4 {
 
 impl core::str::FromStr for AssetCode12 {
     type Err = Error;
+    /// Parses an `AssetCode12`. Requires at least 5 bytes: any code shorter
+    /// than 5 is an `AssetCode4`, and accepting it here would not round-trip (the
+    /// `Display` impl always renders at least 5 characters). For length-agnostic
+    /// parsing that selects the right variant, use `AssetCode`'s `FromStr`.
     fn from_str(s: &str) -> core::result::Result<Self, Self::Err> {
+        // An AssetCode12 is always at least 5 characters, because any asset
+        // code shorter than 5 characters is an AssetCode4. This mirrors the
+        // Display impl, which always renders at least 5 characters, and keeps
+        // the XDR<>JSON conversion round-trippable.
+        const MIN_LENGTH: usize = 5;
         let mut code = AssetCode12([0u8; 12]);
-        escape_bytes::unescape_into(&mut code.0, s.as_bytes()).map_err(|_| Error::Invalid)?;
+        let n =
+            escape_bytes::unescape_into(&mut code.0, s.as_bytes()).map_err(|_| Error::Invalid)?;
+        if n < MIN_LENGTH {
+            return Err(Error::Invalid);
+        }
         Ok(code)
     }
 }
