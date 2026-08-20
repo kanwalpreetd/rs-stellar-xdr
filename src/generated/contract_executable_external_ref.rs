@@ -1,14 +1,12 @@
 #[allow(unused_imports, clippy::wildcard_imports)]
 use super::*;
 
-/// ScSpecUdtUnionCaseTupleV0 is an XDR Struct defined as:
+/// ContractExecutableExternalRef is an XDR Struct defined as:
 ///
 /// ```text
-/// struct SCSpecUDTUnionCaseTupleV0
-/// {
-///     string doc<SC_SPEC_DOC_LIMIT>;
-///     string name<60>;
-///     SCSpecTypeDef type<>;
+/// struct ContractExecutableExternalRef {
+///     SCAddress executable_owner;
+///     SCString tag;
 /// };
 /// ```
 ///
@@ -23,37 +21,29 @@ use super::*;
     serde(rename_all = "snake_case")
 )]
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
-pub struct ScSpecUdtUnionCaseTupleV0 {
-    pub doc: StringM<1024>,
-    pub name: StringM<60>,
-    #[cfg_attr(
-        all(feature = "serde", feature = "alloc"),
-        serde(rename = "type", alias = "type_")
-    )]
-    #[cfg_attr(feature = "schemars", schemars(rename = "type"))]
-    pub type_: VecM<ScSpecTypeDef>,
+pub struct ContractExecutableExternalRef {
+    pub executable_owner: ScAddress,
+    pub tag: ScString,
 }
 
-impl ReadXdr for ScSpecUdtUnionCaseTupleV0 {
+impl ReadXdr for ContractExecutableExternalRef {
     #[cfg(feature = "std")]
     fn read_xdr<R: Read>(r: &mut Limited<R>) -> Result<Self, Error> {
         r.with_limited_depth(|r| {
             Ok(Self {
-                doc: StringM::<1024>::read_xdr(r)?,
-                name: StringM::<60>::read_xdr(r)?,
-                type_: VecM::<ScSpecTypeDef>::read_xdr(r)?,
+                executable_owner: ScAddress::read_xdr(r)?,
+                tag: ScString::read_xdr(r)?,
             })
         })
     }
 }
 
-impl WriteXdr for ScSpecUdtUnionCaseTupleV0 {
+impl WriteXdr for ContractExecutableExternalRef {
     #[cfg(feature = "std")]
     fn write_xdr<W: Write>(&self, w: &mut Limited<W>) -> Result<(), Error> {
         w.with_limited_depth(|w| {
-            self.doc.write_xdr(w)?;
-            self.name.write_xdr(w)?;
-            self.type_.write_xdr(w)?;
+            self.executable_owner.write_xdr(w)?;
+            self.tag.write_xdr(w)?;
             Ok(())
         })
     }

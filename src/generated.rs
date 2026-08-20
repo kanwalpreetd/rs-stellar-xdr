@@ -43,7 +43,7 @@ pub const XDR_FILES_SHA256: [(&str, &str); 13] = [
     ),
     (
         "xdr/Stellar-contract.x",
-        "5d8063e6ddc09be5c22569f1668720b5c705505a70e9224f00748fa58aab2fc5",
+        "b87e9474002c0a089a8aa6f4c4e76e74fa497a7c20e3656532f0ac7762374e4e",
     ),
     (
         "xdr/Stellar-exporter.x",
@@ -59,7 +59,7 @@ pub const XDR_FILES_SHA256: [(&str, &str); 13] = [
     ),
     (
         "xdr/Stellar-ledger.x",
-        "93cdd4dd597d9f0b271762c2f3c81be8562e2004f4f019f539ca7d7e92167099",
+        "b6dec791414821d0bae7a11abb4a6b6143ce3e09d0030c580c9ece1815418b13",
     ),
     (
         "xdr/Stellar-overlay.x",
@@ -4321,6 +4321,18 @@ pub use sc_spec_entry_kind::*;
 mod sc_spec_entry;
 #[allow(unused_imports)]
 pub use sc_spec_entry::*;
+mod sc_bytes;
+#[allow(unused_imports)]
+pub use sc_bytes::*;
+mod sc_string;
+#[allow(unused_imports)]
+pub use sc_string::*;
+mod scsymbol_limit;
+#[allow(unused_imports)]
+pub use scsymbol_limit::*;
+mod sc_symbol;
+#[allow(unused_imports)]
+pub use sc_symbol::*;
 mod sc_val_type;
 #[allow(unused_imports)]
 pub use sc_val_type::*;
@@ -4348,36 +4360,30 @@ pub use int256_parts::*;
 mod contract_executable_type;
 #[allow(unused_imports)]
 pub use contract_executable_type::*;
-mod contract_executable;
-#[allow(unused_imports)]
-pub use contract_executable::*;
 mod sc_address_type;
 #[allow(unused_imports)]
 pub use sc_address_type::*;
 mod muxed_ed25519_account;
 #[allow(unused_imports)]
 pub use muxed_ed25519_account::*;
+mod muxed_contract;
+#[allow(unused_imports)]
+pub use muxed_contract::*;
 mod sc_address;
 #[allow(unused_imports)]
 pub use sc_address::*;
-mod scsymbol_limit;
+mod contract_executable_external_ref;
 #[allow(unused_imports)]
-pub use scsymbol_limit::*;
+pub use contract_executable_external_ref::*;
+mod contract_executable;
+#[allow(unused_imports)]
+pub use contract_executable::*;
 mod sc_vec;
 #[allow(unused_imports)]
 pub use sc_vec::*;
 mod sc_map;
 #[allow(unused_imports)]
 pub use sc_map::*;
-mod sc_bytes;
-#[allow(unused_imports)]
-pub use sc_bytes::*;
-mod sc_string;
-#[allow(unused_imports)]
-pub use sc_string::*;
-mod sc_symbol;
-#[allow(unused_imports)]
-pub use sc_symbol::*;
 mod sc_nonce_key;
 #[allow(unused_imports)]
 pub use sc_nonce_key::*;
