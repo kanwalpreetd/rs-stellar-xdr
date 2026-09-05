@@ -4705,6 +4705,12 @@ pub use ledger_close_value_signature::*;
 mod stellar_value_proposed_value;
 #[allow(unused_imports)]
 pub use stellar_value_proposed_value::*;
+mod stellar_value_signed_ms_value;
+#[allow(unused_imports)]
+pub use stellar_value_signed_ms_value::*;
+mod stellar_value_proposed_ms_value;
+#[allow(unused_imports)]
+pub use stellar_value_proposed_ms_value::*;
 mod stellar_value_ext;
 #[allow(unused_imports)]
 pub use stellar_value_ext::*;
@@ -5524,6 +5530,9 @@ pub use time_point::*;
 mod duration;
 #[allow(unused_imports)]
 pub use duration::*;
+mod time_point_milliseconds;
+#[allow(unused_imports)]
+pub use time_point_milliseconds::*;
 mod extension_point;
 #[allow(unused_imports)]
 pub use extension_point::*;
